@@ -1,0 +1,34 @@
+version: '2.1'
+services:
+  auth-jwt:
+    build: .
+    command: "npm run start"
+    volumes:
+      - .:/usr/src/app/
+    ports:
+      - "5000:5000"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    links:
+      - mongodb
+
+  mongodb:
+    image: mongo:3.4.1
+    volumes:
+      - mongo:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: startup_root
+      MONGO_INITDB_ROOT_PASSWORD: startupsecret
+      MONGODB_DB: auth
+    ports:
+      - '27017:27017'
+    healthcheck:
+      test: exit 0
+      interval: 30s
+      timeout: 15s
+      retries: 3
+
+volumes:
+  mongo:
+    driver: local
