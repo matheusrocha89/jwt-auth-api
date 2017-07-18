@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3'
 services:
   auth-jwt:
     build: .
@@ -8,8 +8,7 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      mongodb:
-        condition: service_healthy
+      - mongodb
     links:
       - mongodb
 
