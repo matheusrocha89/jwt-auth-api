@@ -1,4 +1,4 @@
 module.exports = {
   'secret': 'yoursecrethere',
-  'database': 'mongodb://jwtauthapi_mongo:27017/auth'
+  'database': 'mongodb://jwtauthapi_mongodb_1:27017/auth'
 };
