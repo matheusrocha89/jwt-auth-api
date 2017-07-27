@@ -19,6 +19,6 @@ app.use(morgan('dev'));
 // Connect to database
 mongoose.connect(config.database);
 
-require('./server/routes')(app);
+require('./server')(app);
 
 module.exports = app;
