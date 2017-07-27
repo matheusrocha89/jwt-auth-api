@@ -79,17 +79,17 @@ module.exports = function(app) {
   // POST to create a new message from the authenticated user
   apiRoutes.post('/chat', requireAuth, function(req, res) {
     const chat = new Chat();
-        chat.from = req.user._id;
-        chat.to = req.body.to;
-        chat.message_body = req.body.message_body;
+    chat.from = req.user._id;
+    chat.to = req.body.to;
+    chat.message_body = req.body.message_body;
 
-        // Save the chat message if there are no errors
-        chat.save(function(err) {
-            if (err)
-                res.status(400).send(err);
+    // Save the chat message if there are no errors
+    chat.save(function(err) {
+      if (err)
+        res.status(400).send(err);
 
-            res.status(201).json({ message: 'Message sent!' });
-        });
+      res.status(201).json({ message: 'Message sent!' });
+    });
   });
 
   // PUT to update a message the authenticated user sent
